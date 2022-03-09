@@ -8,11 +8,11 @@ namespace ConsoleApp1
     {
         static bool isFisrtIteration = true;
         static int j0 = 0;
-        const string aPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\ConsoleApp1\bin\Debug\net5.0\a.txt";//way to file
-        const string bPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\ConsoleApp1\bin\Debug\net5.0\b.txt";//way to file
-        const string cPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\ConsoleApp1\bin\Debug\net5.0\c.txt";//way to file
-        const string mPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\ConsoleApp1\bin\Debug\net5.0\m.txt";//way to file
-        const string xPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\ConsoleApp1\bin\Debug\net5.0\x.txt";//way to file
+        const string aPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\bin\Debug\net5.0\a.txt";//way to file
+        const string bPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\bin\Debug\net5.0\b.txt";//way to file
+        const string cPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\bin\Debug\net5.0\c.txt";//way to file
+        const string mPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\bin\Debug\net5.0\m.txt";//way to file
+        const string xPath = @"C:\Users\Dell\Desktop\MOIU\Lab2\bin\Debug\net5.0\x.txt";//way to file
 
 
         static double[][] MatrixCreate(int rows, int cols)

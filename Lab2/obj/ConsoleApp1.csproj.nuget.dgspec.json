@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectPath": "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\ConsoleApp1\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\Desktop\\MOIU\\Lab2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
