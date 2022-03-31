@@ -385,7 +385,7 @@ namespace Lab4
                 new double[]{-2, -1, -4, 1, 0},
                 new double[]{-2, -2, -2, 0, 1}
             };
-            int[] B = new int[] { 3, 4 };
+            int[] B = new int[] { 4, 5 };
             double[] b = new double[] { -1, -1.5 };
             try
             {
