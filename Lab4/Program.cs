@@ -273,42 +273,48 @@ namespace Lab4
                 //3
                 var tmpH = new double[b.Length];
                 tmpH = MArrXVect(AbInv, b);
-                var Kappa = new double[a[0].Length];
+                var kappa = new double[a[0].Length];
 
                 Console.WriteLine();
-                for (int i = 0; i < Kappa.Length; i++)
+                for (int i = 0; i < kappa.Length; i++)
                 {
                     for (int j = 0; j < basis.Length; j++)
                     {
                         if (i == basis[j] - 1)
                         {
-                            Kappa[i] = tmpH[j];
+                            kappa[i] = tmpH[j];
                             //H[i] = 0;
                         }
                     }
                 }
                 var f = false;
-                for (int i = 0; i < Kappa.Length; i++)
-                    if (Kappa[i] < 0)
+                for (int i = 0; i < kappa.Length; i++)
+                    if (kappa[i] < 0)
                         f = true;
                 //4
                 if (f)
                 {
                     var j1 = 0;
-                    for (int i = 0; i < Kappa.Length; i++)
+                    bool f2 = false;
+                    for (int i = 0; !f2; i++)
                     {
-                        if (Kappa[i] < 0)
+                        if (kappa[i] < 0)
                         {
-                            j1 = i;
+                            f2 = true;
+                            j1 = i+1;
                         }
                     }
                     var delta = AbInv[0];
-                    //5
-                    var muA = new double[a[0].Length - b.Length][];
-                    for (int i = 0; i < muA.Length; i++)
+                    for (int i = 0; i < AbInv[0].Length; i++)
                     {
-                        muA[i] = new double[a.Length];
+                        delta[i] = AbInv[i][0];
                     }
+                    //5
+                    var muA =new List<double[]>();
+                    //for (int i = 0; i < muA.Length; i++)
+                    //{
+                    //    muA[i] = new double[a.Length];
+                    //}
                     var atranspose = Transpose(a);
                     var no = new List<int>();
                     for (int i = 0; i < a[0].Length; i++)
@@ -325,23 +331,36 @@ namespace Lab4
                             }
                         }
                     }
-                    for (int i = 0; i < no.Count; i++)
+                    for (int i = 0, j = 0; i < 5; i++)
                     {
-                        if (i == no[i] - 1)
+                        if (basis.Contains(i+1))
                         {
-                            muA[i] = atranspose[i];
+                            continue;
+                        }
+                        if (i == no[j] - 1)
+                        {
+                            j++;
+                            // muA[i] = add(atranspose[i]);
+                            muA.Add(atranspose[i]);
                         }
 
                     }
                     var mu = new double[a[0].Length - b.Length];
+                    var f3 = false;
+                    for (int i = 0; i < mu.Length; i++)
+                        mu[i] = vectxvect(delta, muA[i]);
                     for (int i = 0; i < mu.Length; i++)
                     {
-                        mu[i] = vectxvect(delta, muA[i]);
-                        if (mu[i] >= 0)
+                        if (mu[i] < 0)
                         {
-                            throw new Exception("taks isnt compatible");
+                            f3 = true;
                         }
                     }
+                    if (!f3)
+                    {
+                        throw new Exception("task incompatible");
+                    }
+
                     //6
                     var sigma = new double[a[0].Length - basis.Length];
                     for (int i = 0; i < mu.Length; i++)
@@ -368,7 +387,7 @@ namespace Lab4
                     return Lab4(a, b, basis, c);
 
                 }
-                else return Tuple.Create(Kappa, y);
+                else return Tuple.Create(kappa, y);
 
             
             //в пункте 6 я скорее всего объебался с тем, как идет цикл
@@ -396,7 +415,7 @@ namespace Lab4
                 }
                 for (int i = 0; i < resY.Length; i++)
                 {
-                    // Console.WriteLine(resY[i]);
+                    Console.WriteLine(resY[i]);
                 }
             }
             catch (Exception e)
