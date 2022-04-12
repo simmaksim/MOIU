@@ -739,13 +739,9 @@ namespace ConsoleApp1
         }
         static void Main(string[] args)
         {
-            //int m = Input(mPath);
-            //double[][] a = InputMatr(aPath, m);
-            //double[] c = Input(cPath, a[0].Length);
-            //double[] x = Input(xPath, a[0].Length);
-            //int[] b = IInput(bPath, m);
+            
             int[] b = new int[] { 0 };
-            double[] vect = new double[] { 0, 0 };
+            double[] vect = new double[] { -10, 0 };
             double[][] A =
             {
                 new double[] {1, 1, 1},
@@ -755,13 +751,17 @@ namespace ConsoleApp1
             try
             {
                 var (resX, resB) = StartSimplex(A, vect, b);
+                Console.WriteLine();
+                Console.WriteLine("X:");
                 foreach (var item in resX)
                 {
                     Console.WriteLine(item);
                 }
                 Console.WriteLine();
+                Console.WriteLine("B:");
                 foreach (var item in resB)
                 {
+                    Console.WriteLine("");
                     Console.WriteLine(item);
                 }
             }
