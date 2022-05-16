@@ -708,10 +708,14 @@ namespace ConsoleApp1
             {
                 l[i] = new double[vct.Length];
             }
+            for (int i = 0; i < vct.Length; i++)
+            {
+                vct[i] = i + 1;
+            }
 
             for (int i = 0; i < l.Length; i++)
             {
-                l[i] = ArrXVect(testInvT, newArrT[vct[i]]);
+                l[i] = ArrXVect(testInvT, newArrT[vct[i]]);//MISTAKE
             }
             var newB = new List<double>();
             var newC = new List<double>();
@@ -741,7 +745,7 @@ namespace ConsoleApp1
         {
             
             int[] b = new int[] { 0 };
-            double[] vect = new double[] { -10, 0 };
+            double[] vect = new double[] { 0, 0 };
             double[][] A =
             {
                 new double[] {1, 1, 1},

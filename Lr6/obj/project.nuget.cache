@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "RK7A4N561pfH+dR7NkpdHttWBVi1ZZnxQRn56phA18h3es2H9IPiU9hBTJKmTUacBWbMovzDKCLDmuSZNME5aA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dell\\Desktop\\MOIU\\Lr6\\Lr6.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dell\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

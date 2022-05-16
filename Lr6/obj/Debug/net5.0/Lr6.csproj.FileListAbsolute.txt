@@ -1,0 +1,36 @@
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\Lr6.csproj.AssemblyReference.cache
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\Lr6.GeneratedMSBuildEditorConfig.editorconfig
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\Lr6.AssemblyInfoInputs.cache
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\Lr6.AssemblyInfo.cs
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\Lr6.csproj.CoreCompileInputs.cache
+C:\PTUIR\6 semestr\MOiU\Lr6\bin\Debug\net5.0\Lr6.exe
+C:\PTUIR\6 semestr\MOiU\Lr6\bin\Debug\net5.0\Lr6.deps.json
+C:\PTUIR\6 semestr\MOiU\Lr6\bin\Debug\net5.0\Lr6.runtimeconfig.json
+C:\PTUIR\6 semestr\MOiU\Lr6\bin\Debug\net5.0\Lr6.runtimeconfig.dev.json
+C:\PTUIR\6 semestr\MOiU\Lr6\bin\Debug\net5.0\Lr6.dll
+C:\PTUIR\6 semestr\MOiU\Lr6\bin\Debug\net5.0\ref\Lr6.dll
+C:\PTUIR\6 semestr\MOiU\Lr6\bin\Debug\net5.0\Lr6.pdb
+C:\PTUIR\6 semestr\MOiU\Lr6\bin\Debug\net5.0\MathNet.Numerics.dll
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\Lr6.csproj.CopyComplete
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\Lr6.dll
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\ref\Lr6.dll
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\Lr6.pdb
+C:\PTUIR\6 semestr\MOiU\Lr6\obj\Debug\net5.0\Lr6.genruntimeconfig.cache
+C:\Users\Dell\Desktop\MOIU\Lr6\bin\Debug\net5.0\Lr6.exe
+C:\Users\Dell\Desktop\MOIU\Lr6\bin\Debug\net5.0\Lr6.deps.json
+C:\Users\Dell\Desktop\MOIU\Lr6\bin\Debug\net5.0\Lr6.runtimeconfig.json
+C:\Users\Dell\Desktop\MOIU\Lr6\bin\Debug\net5.0\Lr6.runtimeconfig.dev.json
+C:\Users\Dell\Desktop\MOIU\Lr6\bin\Debug\net5.0\Lr6.dll
+C:\Users\Dell\Desktop\MOIU\Lr6\bin\Debug\net5.0\ref\Lr6.dll
+C:\Users\Dell\Desktop\MOIU\Lr6\bin\Debug\net5.0\Lr6.pdb
+C:\Users\Dell\Desktop\MOIU\Lr6\bin\Debug\net5.0\MathNet.Numerics.dll
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\Lr6.csproj.AssemblyReference.cache
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\Lr6.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\Lr6.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\Lr6.AssemblyInfo.cs
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\Lr6.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\Lr6.csproj.CopyComplete
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\Lr6.dll
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\ref\Lr6.dll
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\Lr6.pdb
+C:\Users\Dell\Desktop\MOIU\Lr6\obj\Debug\net5.0\Lr6.genruntimeconfig.cache

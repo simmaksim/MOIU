@@ -79,7 +79,7 @@ namespace Lab4
             double res = 0;
             for (int i = 0; i < l; i++)
             {
-                res+= a[i] * b[i];
+                res += a[i] * b[i];
             }
             return res;
         }
@@ -246,158 +246,224 @@ namespace Lab4
             return at;
         }
 
-        static Tuple<double[], double[]> Lab4(double[][] a, double[] b, int[] B, double[] c)
+        static Tuple<double[], double[]> Lab4(double[][] a, double[] b, int[] basis, double[] c)
         {
-            while (true)
+
+            //1
+            var nonBasis = new List<int>();
+            for (int i = 0; i < a[0].Length; i++)
             {
-                //1
-                double[][] Ab = new double[a.Length][];
-                for (int i = 0; i < a.Length; i++)
-                    Ab[i] = new double[B.Length];
-                double[][] AbInv = new double[a.Length][];
-                for (int i = 0; i < a.Length; i++)
-                    AbInv[i] = new double[B.Length];
-                for (int i = 0; i < Ab.Length; i++)
-                {
-                    for (int j = 0; j < Ab[0].Length; j++)
+               
+                    if (!basis.Contains(i+1))
                     {
-                        Ab[i][j] = a[j][B[i] - 1];
+                        nonBasis.Add(i + 1);
+                        
                     }
-                }
-                AbInv = MatrixInverse(Ab);
-                //2
-                double[] Cb = new double[B.Length];
-                for (int i = 0; i < B.Length; i++)
-                    Cb[i] = c[B[i] - 1];
-                double[] y = new double[Cb.Length];
-                y = ArrXVect(AbInv, Cb);
-                //3
-                double[] tmpH = new double[b.Length];
-                tmpH = MArrXVect(AbInv, b);
-                double[] H = new double[a[0].Length];
+                    
                 
-                Console.WriteLine();
-                for (int i = 0; i < H.Length; i++)
+               
+            }
+            var Abasis = new double[a.Length][];
+            for (int i = 0; i < a.Length; i++)
+                Abasis[i] = new double[basis.Length];
+           
+            var AbInv = new double[a.Length][];
+            for (int i = 0; i < a.Length; i++)
+                AbInv[i] = new double[basis.Length];
+            for (int i = 0; i < Abasis.Length; i++)
+            {
+                for (int j = 0; j < Abasis[0].Length; j++)
                 {
-                    for (int j = 0; j < B.Length; j++)
+                    Abasis[i][j] = a[j][basis[i] - 1];
+                }
+            }
+            AbInv = MatrixInverse(Abasis);
+            //2
+            var Cbasis = new double[basis.Length];
+            for (int i = 0; i < basis.Length; i++)
+                Cbasis[i] = c[basis[i] - 1];
+            var y = new double[Cbasis.Length];
+            y = ArrXVect(AbInv, Cbasis);
+            //3
+            var tmpH = new double[b.Length];
+            tmpH = MArrXVect(AbInv, b);
+            var kappa = new double[a[0].Length];
+
+            Console.WriteLine();
+            for (int i = 0; i < kappa.Length; i++)
+            {
+                for (int j = 0; j < basis.Length; j++)
+                {
+                    if (i == basis[j] - 1)
                     {
-                        if (i == B[j] - 1)
+                        kappa[i] = tmpH[j];
+                        //H[i] = 0;
+                    }
+                }
+            }
+            var f = false;
+            for (int i = 0; i < kappa.Length; i++)
+                if (kappa[i] < 0)
+                    f = true;
+            //4
+            if (f)//MISTAKE!!!
+            {
+                var ji = 0;
+                var j1 = 0;
+                List<double> minusKappa = new List<double>();
+                foreach (var item in kappa)
+                {
+                    if (item < 0)
+                    {
+                        minusKappa.Add(item);
+                    }
+                }
+                double mKappa = minusKappa.Min();
+                for (int i = 0; i < kappa.Length; i++)
+                {
+                    if (kappa[i] == mKappa)
+                    {
+                        j1 = i + 1;
+                    }
+                }
+                foreach (var item in minusKappa)
+                {
+                    if (item == mKappa)
+                    {
+                        ji = minusKappa.IndexOf(item);//index of otric kappa
+                        //j1 = item;
+                    }
+                }
+                //bool check = false;
+                
+                /*bool f2 = false;
+                for (int i = 0; !f2; i++)
+                {
+                    if (kappa[i] < 0)
+                    {
+                        f2 = true;
+                        j1 = i + 1;
+                    }
+                }*/
+                var delta = AbInv[ji];
+                for (int i = 0; i < AbInv[0].Length; i++)
+                {
+                    delta[i] = AbInv[i][ji];
+                }
+                //5
+                var muA = new List<double[]>();
+                //for (int i = 0; i < muA.Length; i++)
+                //{
+                //    muA[i] = new double[a.Length];
+                //}
+                var atranspose = Transpose(a);
+                var no = new List<int>();
+                for (int i = 0; i < a[0].Length; i++)
+                {
+                    no.Add(i + 1);
+                }
+                for (int i = 0; i < basis.Length; i++)
+                {
+                    for (int j = 0; j < no.Count; j++)
+                    {
+                        if (basis[i] == no[j])
                         {
-                            H[i] = tmpH[j];
-                            //H[i] = 0;
+                            no.Remove(basis[i]);
                         }
                     }
                 }
-                bool f = false;
-                for (int i = 0; i < H.Length; i++)
-                    if (H[i] < 0)
-                        f = true;
-                //4
-                if (f)
+                for (int i = 0, j = 0; i < 5; i++)
                 {
-                    int j1 = 0;
-                    for (int i = 0; i < H.Length; i++)
+                    if (basis.Contains(i + 1))
                     {
-                        if (H[i] < 0)
-                        {
-                            j1 = i;
-                        }
+                        continue;
                     }
-                    double[] delta = AbInv[0];
-                    //5
-                    double[][] muA = new double[a[0].Length - b.Length][];
-                    for (int i = 0; i < muA.Length; i++)
+                    if (i == no[j] - 1)
                     {
-                        muA[i] = new double[a.Length];
+                        j++;
+                        // muA[i] = add(atranspose[i]);
+                        muA.Add(atranspose[i]);
                     }
-                    double[][] at = Transpose(a);
-                    List<int> no = new List<int>();
-                    for (int i = 0; i < a[0].Length; i++)
-                    {
-                        no.Add(i + 1);
-                    }
-                    for (int i = 0; i < B.Length; i++)
-                    {
-                        for (int j = 0; j < no.Count; j++)
-                        {
-                            if (B[i] == no[j])
-                            {
-                                no.Remove(B[i]);
-                            }
-                        }
-                    }
-                    for (int i = 0; i < no.Count; i++)
-                    {
-                        if (i == no[i] - 1)
-                        {
-                            muA[i] = at[i];
-                        }
-
-                    }
-                    double[] mu = new double[a[0].Length - b.Length];
-                    for (int i = 0; i < mu.Length; i++)
-                    {
-                        mu[i] = vectxvect(delta, muA[i]);
-                        if (mu[i] >= 0)
-                        {
-                            throw new Exception("taks isnt compatible");
-                        }
-                    }
-                    //6
-                    double[] sig = new double[a[0].Length - B.Length];
-                    for (int i = 0; i < mu.Length; i++)
-                    {
-                        sig[i] = (c[i] - vectxvect(at[i], y)) / mu[i];
-                    }
-                    //7
-                    double sig0 = sig.Min();
-                    int tmpj = -1;
-                    for (int i = 0; i < sig.Length; i++)
-                    {
-                        if (sig[i] == sig0)
-                        {
-                            tmpj = i + 1;
-                        }
-                    }
-                    for (int i = 0; i < B.Length; i++)
-                    {
-                        if (B[i] == j1)
-                        {
-                            B[i] = tmpj;
-                        }
-                    }
-                   
 
                 }
-                else return Tuple.Create(H, y);
+                var mu = new double[a[0].Length - b.Length];
+                var f3 = false;
+                for (int i = 0; i < mu.Length; i++)
+                    mu[i] = vectxvect(delta, muA[i]);
+                for (int i = 0; i < mu.Length; i++)
+                {
+                    if (mu[i] < 0)
+                    {
+                        f3 = true;
+                    }
+                }
+                if (!f3)
+                {
+                    throw new Exception("task incompatible");
+                }
+
+                //6
+                var sigma = new double[a[0].Length - basis.Length];
+                for (int i = 0; i < mu.Length; i++)
+                {
+
+                    sigma[i] = (c[nonBasis[i]-1] - vectxvect(atranspose[nonBasis[i]-1], y)) / mu[i];
+                }
+                //7
+                List<double> sigmaZero = new List<double>();
+                for (int i = 0; i < sigma.Length; i++)
+                {
+                    if (mu[i] < 0)
+                    {
+                        sigmaZero.Add(sigma[i]);
+                    }
+                }
+                var sigma0 = sigmaZero.Min();
+                var tmpj = -1;
+                for (int i = 0; i < sigma.Length; i++)
+                {
+                    if (sigma[i] == sigma0)
+                    {
+                        tmpj = i + 1;
+                    }
+                }
+                for (int i = 0; i < basis.Length; i++)
+                {
+                    if (basis[i] == j1)
+                    {
+                        basis[i] = tmpj;
+                    }
+                }
+                 return Lab4(a, b, basis, c);
 
             }
-            //в пункте 6 я скорее всего объебался с тем, как идет цикл
-
-            //я зациклил через вайл тру, не уверен, что правильно
+            else return Tuple.Create(kappa, y);
 
         }
         static void Main(string[] args)
         {
-            double[] c = new double[] { -4, -3, -7, 0, 0 };
+            double[] c = new double[] { -3, -3, 2, 1 };
             double[][] a = new double[2][]
             {
-                new double[]{-2, -1, -4, 1, 0},
-                new double[]{-2, -2, -2, 0, 1}
+                new double[]{-3, 1, 2, 0},
+                new double[]{1, -2, 0, 1}
             };
-            int[] B = new int[] { 4, 5 };
-            double[] b = new double[] { -1, -1.5 };
+            int[] B = new int[] { 3, 4 };
+            double[] b = new double[] { -3, -4 };
             try
             {
 
                 var (resH, resY) = Lab4(a, b, B, c);
+                Console.WriteLine("H:");
                 for (int i = 0; i < resH.Length; i++)
                 {
-                    Console.WriteLine(resH[i]); 
+
+                    Console.WriteLine(resH[i]);
                 }
+                Console.WriteLine("Y:");
                 for (int i = 0; i < resY.Length; i++)
                 {
-                   // Console.WriteLine(resY[i]);
+                    Console.WriteLine(resY[i]);
                 }
             }
             catch (Exception e)

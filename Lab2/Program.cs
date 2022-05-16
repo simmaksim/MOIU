@@ -404,7 +404,7 @@ namespace ConsoleApp1
 
 
                 double[] tmp = MArrXVect(aT, U);
-                double[] delta = new double[5];
+                double[] delta = new double[a[0].Length];
                 for (int i = 0; i < delta.Length; i++)
                     delta[i] = 0;
                 for (int i = 0; i < tmp.Length; i++)
@@ -541,8 +541,8 @@ namespace ConsoleApp1
         {
             int k = 0, j = 0;
             String inp = File.ReadAllText(path);
-            double[][] res = new double[3][];
-            for (int i = 0; i < 3; i++)
+            double[][] res = new double[n][];
+            for (int i = 0; i < n; i++)
             {
                 res[i] = new double[5];
             }
@@ -561,10 +561,11 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             int m = Input(mPath);
-            double[] c = Input(cPath, 5);
-            double[] x = Input(xPath, 5);
-            int[] b = IInput(bPath, m);
             double[][] a = InputMatr(aPath, m);
+            double[] c = Input(cPath, a[0].Length);
+            double[] x = Input(xPath, a[0].Length);
+            int[] b = IInput(bPath, m);
+
             try
             {
                 Simplex(m, c, x, a, b);
