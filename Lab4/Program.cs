@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -248,6 +248,7 @@ namespace Lab4
 
         static Tuple<double[], double[]> Lab4(double[][] a, double[] b, int[] basis, double[] c)
         {
+<<<<<<< HEAD
 
             //1
             var nonBasis = new List<int>();
@@ -340,10 +341,83 @@ namespace Lab4
                 for (int i = 0; !f2; i++)
                 {
                     if (kappa[i] < 0)
+=======
+            
+                //1
+                var Abasis = new double[a.Length][];
+                for (int i = 0; i < a.Length; i++)
+                    Abasis[i] = new double[basis.Length];
+                var AbInv = new double[a.Length][];
+                for (int i = 0; i < a.Length; i++)
+                    AbInv[i] = new double[basis.Length];
+                for (int i = 0; i < Abasis.Length; i++)
+                {
+                    for (int j = 0; j < Abasis[0].Length; j++)
+                    {
+                        Abasis[i][j] = a[j][basis[i] - 1];
+                    }
+                }
+                AbInv = MatrixInverse(Abasis);
+                //2
+                var Cbasis = new double[basis.Length];
+                for (int i = 0; i < basis.Length; i++)
+                    Cbasis[i] = c[basis[i] - 1];
+                var y = new double[Cbasis.Length];
+                y = ArrXVect(AbInv, Cbasis);
+                //3
+                var tmpH = new double[b.Length];
+                tmpH = MArrXVect(AbInv, b);
+                var kappa = new double[a[0].Length];
+
+                Console.WriteLine();
+                for (int i = 0; i < kappa.Length; i++)
+                {
+                    for (int j = 0; j < basis.Length; j++)
+                    {
+                        if (i == basis[j] - 1)
+                        {
+                            kappa[i] = tmpH[j];
+                            //H[i] = 0;
+                        }
+                    }
+                }
+                var f = false;
+                for (int i = 0; i < kappa.Length; i++)
+                    if (kappa[i] < 0)
+                        f = true;
+                //4
+                if (f)
+                {
+                    var j1 = 0;
+                    bool f2 = false;
+                    for (int i = 0; !f2; i++)
+                    {
+                        if (kappa[i] < 0)
+                        {
+                            f2 = true;
+                            j1 = i+1;
+                        }
+                    }
+                    var delta = AbInv[0];
+                    for (int i = 0; i < AbInv[0].Length; i++)
+                    {
+                        delta[i] = AbInv[i][0];
+                    }
+                    //5
+                    var muA =new List<double[]>();
+                    //for (int i = 0; i < muA.Length; i++)
+                    //{
+                    //    muA[i] = new double[a.Length];
+                    //}
+                    var atranspose = Transpose(a);
+                    var no = new List<int>();
+                    for (int i = 0; i < a[0].Length; i++)
+>>>>>>> 76bae06e93872da1482759d7a4835a7ed1bb9dc3
                     {
                         f2 = true;
                         j1 = i + 1;
                     }
+<<<<<<< HEAD
                 }*/
                 var delta = AbInv[ji];
                 for (int i = 0; i < AbInv[0].Length; i++)
@@ -365,9 +439,13 @@ namespace Lab4
                 for (int i = 0; i < basis.Length; i++)
                 {
                     for (int j = 0; j < no.Count; j++)
+=======
+                    for (int i = 0; i < basis.Length; i++)
+>>>>>>> 76bae06e93872da1482759d7a4835a7ed1bb9dc3
                     {
                         if (basis[i] == no[j])
                         {
+<<<<<<< HEAD
                             no.Remove(basis[i]);
                         }
                     }
@@ -438,6 +516,76 @@ namespace Lab4
 
             }
             else return Tuple.Create(kappa, y);
+=======
+                            if (basis[i] == no[j])
+                            {
+                                no.Remove(basis[i]);
+                            }
+                        }
+                    }
+                    for (int i = 0, j = 0; i < 5; i++)
+                    {
+                        if (basis.Contains(i+1))
+                        {
+                            continue;
+                        }
+                        if (i == no[j] - 1)
+                        {
+                            j++;
+                            // muA[i] = add(atranspose[i]);
+                            muA.Add(atranspose[i]);
+                        }
+
+                    }
+                    var mu = new double[a[0].Length - b.Length];
+                    var f3 = false;
+                    for (int i = 0; i < mu.Length; i++)
+                        mu[i] = vectxvect(delta, muA[i]);
+                    for (int i = 0; i < mu.Length; i++)
+                    {
+                        if (mu[i] < 0)
+                        {
+                            f3 = true;
+                        }
+                    }
+                    if (!f3)
+                    {
+                        throw new Exception("task incompatible");
+                    }
+
+                    //6
+                    var sigma = new double[a[0].Length - basis.Length];
+                    for (int i = 0; i < mu.Length; i++)
+                    {
+                        sigma[i] = (c[i] - vectxvect(atranspose[i], y)) / mu[i];
+                    }
+                    //7
+                    var sigma0 = sigma.Min();
+                    var tmpj = -1;
+                    for (int i = 0; i < sigma.Length; i++)
+                    {
+                        if (sigma[i] == sigma0)
+                        {
+                            tmpj = i + 1;
+                        }
+                    }
+                    for (int i = 0; i < basis.Length; i++)
+                    {
+                        if (basis[i] == j1)
+                        {
+                            basis[i] = tmpj;
+                        }
+                    }
+                    return Lab4(a, b, basis, c);
+
+                }
+                else return Tuple.Create(kappa, y);
+
+            
+            //в пункте 6 я скорее всего объебался с тем, как идет цикл
+
+            //я зациклил через вайл тру, не уверен, что правильно
+>>>>>>> 76bae06e93872da1482759d7a4835a7ed1bb9dc3
 
         }
         static void Main(string[] args)
@@ -457,7 +605,10 @@ namespace Lab4
                 Console.WriteLine("H:");
                 for (int i = 0; i < resH.Length; i++)
                 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 76bae06e93872da1482759d7a4835a7ed1bb9dc3
                     Console.WriteLine(resH[i]);
                 }
                 Console.WriteLine("Y:");
